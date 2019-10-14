@@ -15,7 +15,7 @@ namespace Legend_Management
 
         }
 
-        private List<Pokemon> ReadPokemon()
+        public List<Pokemon> ReadPokemon()
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
             List<Pokemon> pokemons = new List<Pokemon>();
