@@ -35,5 +35,26 @@ namespace Legend_Management
                 return pokemons;
             }
         }
+
+        public List<Legend> ReadLegends()
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            List<Legend> legends = new List<Legend>();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM legends;";
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["NickName"].ToString(), dr["Activity"].ToString(), int.Parse(dr["ReservedMonDex"].ToString()));
+                    legends.Add(legend);
+                }
+                return legends;
+            }
+        }
     }
 }
