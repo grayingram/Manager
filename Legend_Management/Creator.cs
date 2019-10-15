@@ -7,5 +7,27 @@ namespace Legend_Management
 {
     class Creator
     {
+        Repository Repository = new Repository();
+        public Reader reader = new Reader();
+        public Updater updater = new Updater();
+        
+        public void AddLegend(string nickname, string activity, int reservedmon)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO legends (Nickname, Activity, ReservedMonDex)  VALUES(@nickname, @activity, @reservedmon);";
+                cmd.Parameters.AddWithValue("nickname", nickname);
+                cmd.Parameters.AddWithValue("activity", activity);
+                cmd.Parameters.AddWithValue("reservedmon", reservedmon);
+                cmd.ExecuteNonQuery();
+            }
+            updater.UpdateReservedMons(nickname, reservedmon);
+        }
     }
 }

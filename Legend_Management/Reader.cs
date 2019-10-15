@@ -77,5 +77,22 @@ namespace Legend_Management
                 return availables;
             }
         }
+        //want to know what mon name is tied to which dex entry
+        public string GetPokemonName(int dexNum)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT PokemonName from pokemon_real WHERE DexNum = @dexNum;";
+                cmd.Parameters.AddWithValue("dexNum", dexNum);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                string pokemonName = dr[0].ToString();
+                return pokemonName;
+
+            }
+        }
     }
 }
