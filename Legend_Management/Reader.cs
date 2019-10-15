@@ -89,6 +89,7 @@ namespace Legend_Management
                 cmd.CommandText = "SELECT PokemonName from pokemon_real WHERE DexNum = @dexNum;";
                 cmd.Parameters.AddWithValue("dexNum", dexNum);
                 MySqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
                 string pokemonName = dr[0].ToString();
                 return pokemonName;
 
