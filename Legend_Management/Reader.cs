@@ -14,7 +14,7 @@ namespace Legend_Management
         {
 
         }
-
+//reads the pokemon that exist
         public List<Pokemon> ReadPokemon()
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
@@ -35,7 +35,7 @@ namespace Legend_Management
                 return pokemons;
             }
         }
-
+//reads the legends that exist
         public List<Legend> ReadLegends()
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
@@ -54,6 +54,27 @@ namespace Legend_Management
                     legends.Add(legend);
                 }
                 return legends;
+            }
+        }
+        //want to know if a mon evo line is available
+        public List<Available> ReadAvailable()
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            List<Available> availables = new List<Available>();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM insight;";
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Available available = new Available((dr["PokemonName"].ToString()), dr["NickName"].ToString());
+                    availables.Add(available);
+                }
+                return availables;
             }
         }
     }
