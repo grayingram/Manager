@@ -30,5 +30,35 @@ namespace Legend_Management
             }
             updater.UpdateReservedMons(nickname, reservedmon);
         }
+
+        public void AddPokemon(string pokemonName, int generation)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "insert into pokemon_real(PokemonName, Generation) values(@pokemonName,@generation);";
+                cmd.Parameters.AddWithValue("pokemonName",pokemonName);
+                cmd.Parameters.AddWithValue("generation", generation);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void AddRervableMon(int dexNum, string pokemonName)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "insert into reservablemons(DexNum, PokemonName) values (@dexNum,@pokemonName);";
+                cmd.Parameters.AddWithValue("dexNum", dexNum);
+                cmd.Parameters.AddWithValue("pokemonName", pokemonName);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
