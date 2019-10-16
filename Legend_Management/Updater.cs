@@ -11,9 +11,7 @@ namespace Legend_Management
         public Reader Reader = new Reader();
 
 
-//        UPDATE insight
-//SET Nickname = 'sutto247'
-//WHERE PokemonName = 'Serperior';
+
         public void UpdateReservedMons(string nickname, int dexNum)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);

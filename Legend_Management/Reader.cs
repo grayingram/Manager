@@ -9,7 +9,6 @@ namespace Legend_Management
     {
         Repository Repository = new Repository();
         //public List<Legends> Legends {get; private set;}
-
         public Reader()
         {
 
