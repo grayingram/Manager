@@ -12,7 +12,8 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
-            meg.AddLegend();
+            //int num = lawyer.GetInt("How many Pokemon will you be entering?");
+            //meg.AddPokemon(num);
             // meg.UpdateLegends();
            // meg.UpdateNickname();
            // reader.GetPokemonName(75);

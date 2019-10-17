@@ -77,6 +77,35 @@ namespace Legend_Management
             }
                 
         }
+
+        public void AddPokemon()
+        {
+            string name = lawyer.GetResponse("What is the name of the Pokemon?");
+            int generation = lawyer.GetInt("What generation is it from?");
+            creator.AddPokemon(name, generation);
+        }
+        public void AddPokemon(int num)
+        {
+            int generation;
+            if(lawyer.GetYesNo("Are the mons you wish to enter from the same generation?"))
+            {
+                generation = lawyer.GetInt("What is the generation of the pokemon to be entered?");
+                for (int count = 0; count < num; count++)
+                {
+                    string name = lawyer.GetResponse("What is the name of the Pokemon?");
+                    creator.AddPokemon(name, generation);
+                }
+            }
+            else
+            {
+                for(int count = 0; count < num; count++)
+                {
+                    string name = lawyer.GetResponse("What is the name of the Pokemon?");
+                    generation = lawyer.GetInt("What generation is it from?");
+                    creator.AddPokemon(name, generation);
+                }
+            }
+        }
     }
 
    
