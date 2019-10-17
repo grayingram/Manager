@@ -19,7 +19,7 @@ namespace Legend_Management
 
         public void UpdateLegends()
         {
-            List<Legend> Legends = new List<Legend>();
+            List<Legend> Legends = reader.ReadLegends();
             foreach(Legend legend in Legends)
             {
                 updater.UpdateLegends(legend.NickName, legend.Id);
