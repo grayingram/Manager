@@ -12,9 +12,11 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
-           // meg.UpdateLegends();
-            Console.WriteLine("Done");
-            Console.ReadLine();
+            // meg.UpdateLegends();
+           // meg.UpdateNickname();
+           // reader.GetPokemonName(75);
+            Console.WriteLine("done");
+            //Console.ReadLine();
 
             List<Pokemon> Pokemons = reader.ReadPokemon();
             List<Legend> Legends = reader.ReadLegends();
