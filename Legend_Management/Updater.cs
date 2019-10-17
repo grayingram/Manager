@@ -27,5 +27,20 @@ namespace Legend_Management
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void UpdateLegends(string nickName, int id)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update legends SET UserName = @nickName WHERE idLegends = @id;";
+                cmd.Parameters.AddWithValue("nickName", nickName);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

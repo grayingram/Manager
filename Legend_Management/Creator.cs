@@ -12,7 +12,7 @@ namespace Legend_Management
         public Updater updater = new Updater();
         public Lawyer lawyer = new Lawyer();
         
-        public void AddLegend(string nickname, string activityword, int reservedmon)
+        public void AddLegend(string userName, string nickname, string activityword, int reservedmon)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
 
@@ -22,7 +22,8 @@ namespace Legend_Management
                 conn.Open();
                 bool activity = true;
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO legends (Nickname, Activity, ReservedMonDex)  VALUES(@nickname, @activity, @reservedmon);";
+                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity, ReservedMonDex)  VALUES(@userName,@nickname, @activity, @reservedmon);";
+                cmd.Parameters.AddWithValue("userName", userName);
                 cmd.Parameters.AddWithValue("nickname", nickname);
                 cmd.Parameters.AddWithValue("activity", activity.ToString());
                 cmd.Parameters.AddWithValue("reservedmon", reservedmon);
