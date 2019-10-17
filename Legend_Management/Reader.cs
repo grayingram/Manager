@@ -94,5 +94,23 @@ namespace Legend_Management
 
             }
         }
+
+        public string GetLegendUserNamebyRM(int dexNum)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT UserName from legends WHERE ReservedMonDex = @dexNum;";
+                cmd.Parameters.AddWithValue("dexNum", dexNum);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                string username = dr[0].ToString();
+                return username;
+
+            }
+        }
     }
 }
