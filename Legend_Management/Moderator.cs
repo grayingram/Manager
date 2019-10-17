@@ -51,7 +51,32 @@ namespace Legend_Management
             }
         }
 
-        // public void AddLegend()
+        public void AddLegend()
+        {
+            string username = lawyer.GetResponse("What is their username?");
+            string nickname;
+            if (lawyer.GetYesNo("Is the nickname the same as the username?"))
+            {
+                nickname = username;
+            }
+            else {
+                nickname =lawyer.GetResponse("What nickname would the legend like?") ;
+            } 
+            int dexNumtemp = lawyer.GetInt("What is the dex number of the final evolution or start of the split?i.e. Golem is final, but slowpoke is the start to different final evos.");
+            foreach (Available available in Availables)
+            {
+                if (reader.GetPokemonName(dexNumtemp) == available.PokeName)
+                {
+                    creator.AddLegend(username, nickname, dexNumtemp);
+                    break;
+                }
+                else
+                {
+                    lawyer.Message("That pokemon is taken try another.");
+                }
+            }
+                
+        }
     }
 
    

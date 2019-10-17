@@ -70,8 +70,15 @@ namespace Legend_Management
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Available available = new Available((dr["PokemonName"].ToString()), dr["NickName"].ToString());
-                    availables.Add(available);
+                    string pokemon_name = dr["PokemonName"].ToString();
+                    string nickname = dr["NickName"].ToString();
+                    //Available available = new Available((dr["PokemonName"].ToString()), dr["NickName"].ToString());
+                    if (nickname.Length == 0)
+                    {
+                        Available available = new Available(pokemon_name, nickname);
+                        availables.Add(available);
+                    }
+                    
                 }
                 return availables;
             }

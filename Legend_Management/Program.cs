@@ -12,6 +12,7 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
+            meg.AddLegend();
             // meg.UpdateLegends();
            // meg.UpdateNickname();
            // reader.GetPokemonName(75);

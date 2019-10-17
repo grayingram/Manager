@@ -12,7 +12,7 @@ namespace Legend_Management
         public Updater updater = new Updater();
         public Lawyer lawyer = new Lawyer();
         
-        public void AddLegend(string userName, string nickname, string activityword, int reservedmon)
+        public void AddLegend(string userName, string nickname, int reservedmon)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
 

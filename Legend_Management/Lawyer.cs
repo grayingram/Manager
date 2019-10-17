@@ -253,5 +253,10 @@ namespace Legend_Management
             
         }
 
+            public void Message(string message)
+            {
+                Console.WriteLine(message);
+            }
+
     }
 }
