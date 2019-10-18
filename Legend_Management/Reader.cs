@@ -109,7 +109,7 @@ namespace Legend_Management
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT UserName from legends WHERE UserName = @username;";
+                cmd.CommandText = "SELECT Count(UserName) AS result from legends WHERE UserName = @username;";
                 cmd.Parameters.AddWithValue("username", username);
                 MySqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
