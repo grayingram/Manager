@@ -12,12 +12,16 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
-            //int num = lawyer.GetInt("How many Pokemon will you be entering?");
-            //meg.AddPokemon(num);
-            // meg.UpdateLegends();
-           // meg.UpdateNickname();
-           // reader.GetPokemonName(75);
-            Console.WriteLine("done");
+            if (lawyer.GetYesNo("Would you like to check if a legend exist?"))
+            {
+                meg.DoesLegendExist();
+            }
+                //int num = lawyer.GetInt("How many Pokemon will you be entering?");
+                //meg.AddPokemon(num);
+                // meg.UpdateLegends();
+                // meg.UpdateNickname();
+                // reader.GetPokemonName(75);
+                Console.WriteLine("done");
             //Console.ReadLine();
 
             List<Pokemon> Pokemons = reader.ReadPokemon();

@@ -106,6 +106,24 @@ namespace Legend_Management
                 }
             }
         }
+        public void DoesLegendExist()
+        {
+             string username = lawyer.GetResponse("What is the username of the legend you want to check?");
+                if (!(reader.DoesLegendExists(username)))
+                {
+                    Console.WriteLine("Let's fix that!");
+                    this.AddLegend();
+                }
+                else
+                {
+                    Console.WriteLine("They exist!");
+                }
+            if (lawyer.GetYesNo("Would you like to see if another legend exist?"))
+            {
+                this.DoesLegendExist();
+            }
+            
+        }
     }
 
    

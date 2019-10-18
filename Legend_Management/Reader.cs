@@ -102,7 +102,31 @@ namespace Legend_Management
             }
         }
 
-        public string GetLegendUserNamebyRM(int dexNum)
+        public bool DoesLegendExists(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT UserName from legends WHERE UserName = @username;";
+                cmd.Parameters.AddWithValue("username", username);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                int count = int.Parse(dr[0].ToString());
+                if (count >= 1)
+                {
+                    return true;
+                }
+                
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+            public string GetLegendUserNamebyRM(int dexNum)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
             using (conn)
