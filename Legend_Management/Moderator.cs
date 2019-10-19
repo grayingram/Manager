@@ -80,19 +80,8 @@ namespace Legend_Management
             {
                 creator.AddLegend(username, nickname, reserve.Pokemon);
             }
-            int dexNumtemp = lawyer.GetInt("What is the dex number of the final evolution or start of the split?i.e. Golem is final, but slowpoke is the start to different final evos.");
-            foreach (Available available in Availables)
-            {
-                if (reader.GetPokemonName(dexNumtemp) == available.PokeName)
-                {
-                    creator.AddLegend(username, nickname, dexNumtemp);
-                    break;
-                }
-                else
-                {
-                    lawyer.Message("That pokemon is taken try another.");
-                }
-            }
+            
+            
                 
         }
 

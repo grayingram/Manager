@@ -13,10 +13,7 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
-            if(lawyer.GetYesNo("Would you like to check the availabilty of a mon?"))
-            {
-                meg.Test();
-            }
+            meg.AddLegend();
             //if (lawyer.GetYesNo("Would you like to check if a legend exist?"))
             //{
             //    meg.DoesLegendExist();
