@@ -101,6 +101,13 @@ namespace Legend_Management
                 else
                 {
                     legend.SetActivity("true");
+                    Reserve reserve = CheckAvailable();
+                    if (reserve.Fact)
+                    {
+                        updater.UpdateReservedMons(legend.NickName, reserve.Pokemon);
+                    }
+                    updater.UpdateLegendReserveMon(legend.Id, reserve.Pokemon);
+                    updater.UpdateLegendStatus(legend.Id, legend.Activity);
                     
                 }
             }
