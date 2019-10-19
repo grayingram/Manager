@@ -27,6 +27,22 @@ namespace Legend_Management
                 cmd.ExecuteNonQuery();
             }
         }
+        public void UpdateReservedMons(int dexNum)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                string pokemonName = Reader.GetPokemonName(dexNum);
+                string nickname = "";
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update insight SET Nickname = @nickname WHERE PokemonName = @pokemonName;";
+                cmd.Parameters.AddWithValue("nickname", nickname);
+                cmd.Parameters.AddWithValue("pokemonName", pokemonName);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public void UpdateLegends(string nickName, int id)
         {
@@ -41,6 +57,38 @@ namespace Legend_Management
                 cmd.Parameters.AddWithValue("id", id);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public void UpdateLegendStatus(int id, bool fact)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update legends SET Activity = @fact WHERE idLegends = @id;";
+                cmd.Parameters.AddWithValue("fact", fact);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.ExecuteNonQuery();
+            }
+
+        }
+
+        public void UpdateLegendReserveMon(int id, int dexNum)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update legends SET ReservedMonDex = @dexnum WHERE idLegends = @id;";
+                cmd.Parameters.AddWithValue("dexnum", dexNum);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.ExecuteNonQuery();
+            }
+
         }
 
         public void UpdateNickname(string nickName, string userName)

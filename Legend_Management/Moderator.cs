@@ -84,6 +84,27 @@ namespace Legend_Management
             
                 
         }
+        public void UpdateStatus()
+        {
+            string username = lawyer.GetResponse("What is the username of the Legend whose active status you want to check?");
+            Legend legend = reader.CheckStatus(username);
+            if(lawyer.GetYesNo("Would you like to change the actvie status of this Legend?"))
+            {
+                if (legend.Activity)
+                {
+                    legend.SetActivity("false");
+                    updater.UpdateReservedMons(legend.ReservedPokemon);
+                    updater.UpdateLegendReserveMon(legend.Id, 0);
+                    updater.UpdateLegendStatus(legend.Id, legend.Activity);
+                    
+                }
+                else
+                {
+                    legend.SetActivity("true");
+                    
+                }
+            }
+        }
 
         public void AddPokemon()
         {

@@ -126,7 +126,7 @@ namespace Legend_Management
             }
         }
 
-            public string GetLegendUserNamebyRM(int dexNum)
+        public string GetLegendUserNamebyRM(int dexNum)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
             using (conn)
@@ -142,6 +142,31 @@ namespace Legend_Management
                 return username;
 
             }
+        }
+
+        public Legend CheckStatus(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            Legend legend = new Legend();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM legends where UserName = @username;";
+                cmd.Parameters.AddWithValue("username", username);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    legend.SetId(int.Parse(dr["idLegends"].ToString()));
+                    legend.SetUserName( dr["UserName"].ToString());
+                    legend.SetNickName(dr["NickName"].ToString());
+                    legend.SetActivity(dr["Activity"].ToString());
+                    legend.SetReservedMon(int.Parse(dr["ReservedMonDex"].ToString()));
+                }
+            }
+            return legend;
         }
     }
 }

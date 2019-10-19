@@ -27,5 +27,42 @@ namespace Legend_Management
             }
             ReservedPokemon = monNum;
         }
+
+        public Legend()
+        {
+            Id = 0;
+            UserName = "";
+            NickName = "";
+            Activity = false;
+            ReservedPokemon = 0;
+        }
+
+        public void SetId(int id)
+        {
+            Id = id;
+        }
+        public void SetUserName(string username)
+        {
+            UserName = username;
+        }
+        public void SetNickName(string nickname)
+        {
+            NickName = nickname;
+        }
+        public void SetActivity(string activity)
+        {
+            if (activity.Equals("true"))
+            {
+                Activity = true;
+            }
+            else
+            {
+                Activity = false;
+            }
+        }
+        public void SetReservedMon(int dexNum)
+        {
+            ReservedPokemon = dexNum;
+        }
     }
 }
