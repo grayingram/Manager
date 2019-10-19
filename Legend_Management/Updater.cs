@@ -68,7 +68,7 @@ namespace Legend_Management
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "Update legends SET Activity = @fact WHERE idLegends = @id;";
-                cmd.Parameters.AddWithValue("fact", fact);
+                cmd.Parameters.AddWithValue("fact", fact.ToString());
                 cmd.Parameters.AddWithValue("id", id);
                 cmd.ExecuteNonQuery();
             }
