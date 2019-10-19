@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Legend_Management
 {
     class Program
@@ -12,10 +13,14 @@ namespace Legend_Management
             Updater updater = new Updater();
 
             Moderator meg = new Moderator();
-            if (lawyer.GetYesNo("Would you like to check if a legend exist?"))
+            if(lawyer.GetYesNo("Would you like to check the availabilty of a mon?"))
             {
-                meg.DoesLegendExist();
+                meg.Test();
             }
+            //if (lawyer.GetYesNo("Would you like to check if a legend exist?"))
+            //{
+            //    meg.DoesLegendExist();
+            //}
                 //int num = lawyer.GetInt("How many Pokemon will you be entering?");
                 //meg.AddPokemon(num);
                 // meg.UpdateLegends();
@@ -24,8 +29,8 @@ namespace Legend_Management
                 Console.WriteLine("done");
             //Console.ReadLine();
 
-            List<Pokemon> Pokemons = reader.ReadPokemon();
-            List<Legend> Legends = reader.ReadLegends();
+            List<Pokemon> Pokemons = meg.reader.ReadPokemon();
+            List<Legend> Legends = meg.reader.ReadLegends();
             //List<Available> Availables = reader.ReadAvailable();
             //int num = lawyer.GetInt("How many pokemon names would you like to search for?");
             //for(int count = 0; count < num; count++)

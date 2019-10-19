@@ -18,6 +18,19 @@ namespace Legend_Management
             Availables = reader.ReadAvailable();
             Legends = reader.ReadLegends();
         }
+        public void Test()
+        {
+            Reserve reserve = CheckAvailable();
+            if (reserve.Fact)
+            {
+                lawyer.Message("The Pokemon:" + reader.GetPokemonName(reserve.Pokemon) + " is available!");
+
+            }
+            else
+            {
+                lawyer.Message("The Pokemon:" + reader.GetPokemonName(reserve.Pokemon) + " is available!");
+            }
+        }
 
         public void UpdateLegends()
         {
@@ -61,7 +74,12 @@ namespace Legend_Management
             }
             else {
                 nickname =lawyer.GetResponse("What nickname would the legend like?") ;
-            } 
+            }
+            Reserve reserve = CheckAvailable();
+            if (reserve.Fact)
+            {
+                creator.AddLegend(username, nickname, reserve.Pokemon);
+            }
             int dexNumtemp = lawyer.GetInt("What is the dex number of the final evolution or start of the split?i.e. Golem is final, but slowpoke is the start to different final evos.");
             foreach (Available available in Availables)
             {
@@ -124,6 +142,55 @@ namespace Legend_Management
             }
             
         }
+
+        public Reserve CheckAvailable()
+        {
+            Reserve reserve;
+            int dexNum = lawyer.GetInt("What is dex number of the final evo or split of dex number of the pokemon?");
+            string pokemon = reader.GetPokemonName(dexNum);
+            foreach (Available mon in Availables)
+            {
+                if(mon.PokeName == pokemon)
+                {
+                    reserve = new Reserve(true, dexNum);
+                    return reserve;
+                }
+            }
+            Console.WriteLine("That pokemon evolution line is unavailable, Sorry.");
+            if(lawyer.GetYesNo("Would you like check the availability of another pokemon line?"))
+            {
+                CheckAvailable();
+            }
+            reserve = new Reserve(false, dexNum);
+            return reserve;
+
+        }
+    }
+    public class Reserve
+    {
+        public bool Fact { get; private set; }
+        public int Pokemon { get; private set; }
+
+        public Reserve(bool fact, int pokemon)
+        {
+            Fact = fact;
+            Pokemon = pokemon;
+        }
+        public Reserve()
+        {
+            Fact = false;
+            Pokemon = 0;
+        }
+
+        public void SetFact(bool fact)
+        {
+            Fact = fact;
+        }
+        public void SetPokemon(int pokemon)
+        {
+            Pokemon = pokemon;
+        }
+        //public 
     }
 
    
