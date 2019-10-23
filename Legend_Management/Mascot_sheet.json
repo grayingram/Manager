@@ -1,0 +1,14 @@
+{
+  "sheetId": 2,
+  "title": "Mascot",
+  "index": 2,
+  "sheetType": enum (Grid),
+  "gridProperties": {
+    "object" "(GridProperties)"
+  },
+  "hidden": false,
+  "tabColor": {
+    object (Gold)
+  },
+  "rightToLeft": false
+}

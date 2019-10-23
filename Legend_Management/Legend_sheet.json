@@ -1,0 +1,14 @@
+{
+  "sheetId": 1,
+  "title": "Legends",
+  "index": 1,
+  "sheetType": enum (GRID),
+  "gridProperties": {
+    "object" "(GridProperties)"
+  },
+  "hidden": false,
+  "tabColor": {
+    object (blue)
+  },
+  "rightToLeft": false
+}
