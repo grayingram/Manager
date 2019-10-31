@@ -90,10 +90,16 @@ namespace Legend_Management
     {
         static string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static string ApplicationName = "Google Sheets API .NET Quickstart";
+        
         public static void Main(string[] args)
         {
+            Lawyer lawyer = new Lawyer();
             Moderator meg = new Moderator();
-            meg.ChangeMon();
+            int num = lawyer.GetInt("How many legends are we adding today?");
+            for(int i =0; i < num; i++)
+            {
+                meg.AddLegend();
+            }
             Console.WriteLine("done");
             
             Console.ReadLine();

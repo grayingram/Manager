@@ -67,20 +67,29 @@ namespace Legend_Management
         public void AddLegend()
         {
             string username = lawyer.GetResponse("What is their username?");
-            string nickname;
-            if (lawyer.GetYesNo("Is the nickname the same as the username?"))
+            if (!(reader.DoesLegendExists(username)))
             {
-                nickname = username;
+                Console.WriteLine("Let's fix that!");
+                string nickname;
+                if (lawyer.GetYesNo("Is the nickname the same as the username?"))
+                {
+                    nickname = username;
+                }
+                else
+                {
+                    nickname = lawyer.GetResponse("What nickname would the legend like?");
+                }
+                Reserve reserve = CheckAvailable();
+                if (reserve.Fact)
+                {
+                    creator.AddLegend(username, nickname, reserve.Pokemon);
+                }
             }
-            else {
-                nickname =lawyer.GetResponse("What nickname would the legend like?") ;
-            }
-            Reserve reserve = CheckAvailable();
-            if (reserve.Fact)
+            else
             {
-                creator.AddLegend(username, nickname, reserve.Pokemon);
+                Console.WriteLine("They exist!");
             }
-            
+                    
             
                 
         }
@@ -124,9 +133,10 @@ namespace Legend_Management
                 {
                     string newnick = lawyer.GetResponse("What would " + legend.UserName + " like for their new nickname to be?");
                     updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
+                    updater.UpdateLegendNickname(legend.NickName, newnick);
                     updater.UpdateReservedMons(legend.NickName, dexnum);
                     updater.UpdateLegendReserveMon(legend.Id, dexnum);
-                    updater.UpdateLegendNickname(legend.NickName, newnick);
+                    
                 }
                 else
                 {
