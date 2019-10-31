@@ -49,7 +49,7 @@ namespace Legend_Management
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["UserName"].ToString(), dr["NickName"].ToString(), dr["Activity"].ToString(), int.Parse(dr["ReservedMonDex"].ToString()));
+                    Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["UserName"].ToString(), dr["NickName"].ToString(), dr["Activity"].ToString());
                     legends.Add(legend);
                 }
                 return legends;

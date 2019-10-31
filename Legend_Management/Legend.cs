@@ -25,7 +25,30 @@ namespace Legend_Management
             {
                 Activity = false;
             }
-            ReservedPokemon = monNum;
+            if(monNum > 0)
+            {
+                ReservedPokemon = monNum;
+            }
+            else
+            {
+                ReservedPokemon = 0
+;
+            }
+            
+        }
+        public Legend(int id, string userName, string nickName, string activity)
+        {
+            Id = id;
+            UserName = userName;
+            NickName = nickName;
+            if (activity.Equals("true"))
+            {
+                Activity = true;
+            }
+            else
+            {
+                Activity = false;
+            }
         }
 
         public Legend()
