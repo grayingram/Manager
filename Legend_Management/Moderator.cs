@@ -120,9 +120,20 @@ namespace Legend_Management
                 Legend legend = reader.GetLegend(username);
                 int dexnum = lawyer.GetInt("What is the Dex Number of the final/split pokemon" + legend.UserName + " would like?");
                 string pokemon = reader.GetPokemonName(dexnum);
-                updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
-                updater.UpdateReservedMons(legend.NickName, dexnum);
-                updater.UpdateLegendReserveMon(legend.Id, dexnum);
+                if (lawyer.GetYesNo("Would" + legend.UserName + " like to change their nickname also"))
+                {
+                    string newnick = lawyer.GetResponse("What would " + legend.UserName + " like for their new nickname to be?");
+                    updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
+                    updater.UpdateReservedMons(legend.NickName, dexnum);
+                    updater.UpdateLegendReserveMon(legend.Id, dexnum);
+                    updater.UpdateLegendNickname(legend.NickName, newnick);
+                }
+                else
+                {
+                    updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
+                    updater.UpdateReservedMons(legend.NickName, dexnum);
+                    updater.UpdateLegendReserveMon(legend.Id, dexnum);
+                }
             }
             else
             {

@@ -74,6 +74,21 @@ namespace Legend_Management
             }
 
         }
+        public void UpdateLegendNickname(string old, string newName)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update legends SET NickName = @newName WHERE NickName = @old;";
+                cmd.Parameters.AddWithValue("newName", newName);
+                cmd.Parameters.AddWithValue("old", old);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         public void UpdateLegendReserveMon(int id, int dexNum)
         {
