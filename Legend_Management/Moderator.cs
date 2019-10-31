@@ -66,10 +66,10 @@ namespace Legend_Management
 
         public void AddLegend()
         {
-            string username = lawyer.GetResponse("What is their username?");
+            string username = lawyer.GetResponse("What is the Legends username?");
             if (!(reader.DoesLegendExists(username)))
             {
-                Console.WriteLine("Let's fix that!");
+                Console.WriteLine("They didn't exist so let's fix that!");
                 string nickname;
                 if (lawyer.GetYesNo("Is the nickname the same as the username?"))
                 {
@@ -92,6 +92,33 @@ namespace Legend_Management
                     
             
                 
+        }
+        public void AddLegendWithoutMon()
+        {
+            string username = lawyer.GetResponse("What is the Legends username?");
+            if (!(reader.DoesLegendExists(username)))
+            {
+                if(lawyer.GetYesNo(("They didn't exist so let's fix that!"))){
+                    string nickname;
+                    if (lawyer.GetYesNo("Is the nickname the same as the username?"))
+                    {
+                        nickname = username;
+                    }
+                    else
+                    {
+                        nickname = lawyer.GetResponse("What nickname would the legend like?");
+                    }
+                    creator.AddLegend(username, nickname);
+                }
+                else
+                {
+                    Console.WriteLine("Okay maybe next time.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("They exist!");
+            }
         }
         public void UpdateStatus()
         {

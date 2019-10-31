@@ -98,7 +98,7 @@ namespace Legend_Management
             int num = lawyer.GetInt("How many legends are we adding today?");
             for(int i =0; i < num; i++)
             {
-                meg.AddLegend();
+                meg.AddLegendWithoutMon();
             }
             Console.WriteLine("done");
             

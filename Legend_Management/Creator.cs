@@ -32,6 +32,25 @@ namespace Legend_Management
             updater.UpdateReservedMons(nickname, reservedmon);
         }
 
+        public void AddLegend(string username, string nickname)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+
+                conn.Open();
+                bool activity = true;
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity) Values(@username, @nickname, @activity);";
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("nickname", nickname);
+                cmd.Parameters.AddWithValue("activity", activity.ToString());
+                cmd.ExecuteNonQuery();
+
+            }
+        }
+
         public void AddPokemon(string pokemonName, int generation)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
