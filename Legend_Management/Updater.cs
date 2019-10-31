@@ -27,7 +27,7 @@ namespace Legend_Management
                 cmd.ExecuteNonQuery();
             }
         }
-        public void UpdateReservedMons(int dexNum)
+        public void UpdateReservedMonstoAvail(int dexNum)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
 
@@ -43,7 +43,7 @@ namespace Legend_Management
                 cmd.ExecuteNonQuery();
             }
         }
-
+      
         public void UpdateLegends(string nickName, int id)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);

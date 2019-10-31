@@ -92,27 +92,30 @@ namespace Legend_Management
         static string ApplicationName = "Google Sheets API .NET Quickstart";
         public static void Main(string[] args)
         {
-            //Moderator meg = new Moderator();
-            //meg.AddLegend();
-            //Console.WriteLine("done");
-            //Console.ReadLine();
-            SheetsService sheetsService = new SheetsService(new BaseClientService.Initializer
-            {
-                HttpClientInitializer = GetCredential(),
-                ApplicationName = "Google-SheetsSample/0.1",
-            });
+            Moderator meg = new Moderator();
+            meg.ChangeMon();
+            Console.WriteLine("done");
+            
+            Console.ReadLine();
+            //SheetsService sheetsService = new SheetsService(new BaseClientService.Initializer
+            //{
+            //    HttpClientInitializer = GetCredential(),
+            //    ApplicationName = "Google-SheetsSample/0.1",
+            //});
 
-            // TODO: Assign values to desired properties of `requestBody`:
-            Data.Spreadsheet requestBody = new Data.Spreadsheet();
+            //// TODO: Assign values to desired properties of `requestBody`:
+            //Spreadsheet requestBody = new Spreadsheet();
 
-            SpreadsheetsResource.CreateRequest request = sheetsService.Spreadsheets.Create(requestBody);
+            //SpreadsheetsResource.CreateRequest request = sheetsService.Spreadsheets.Create(requestBody);
 
-            // To execute asynchronously in an async method, replace `request.Execute()` as shown:
-            Data.Spreadsheet response = request.Execute();
-            // Data.Spreadsheet response = await request.ExecuteAsync();
+            //// To execute asynchronously in an async method, replace `request.Execute()` as shown:
+            //Data.Spreadsheet response = request.Execute();
+            //// Data.Spreadsheet response = await request.ExecuteAsync();
 
-            // TODO: Change code below to process the `response` object:
-            Console.WriteLine(JsonConvert.SerializeObject(response
+            //// TODO: Change code below to process the `response` object:
+            //Console.WriteLine(JsonConvert.SerializeObject(response));
+
+
             //SheetsService sheetsService = new SheetsService(new BaseClientService.Initializer
             //{
             //    HttpClientInitializer = GetCredential(),

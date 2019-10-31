@@ -87,13 +87,13 @@ namespace Legend_Management
         public void UpdateStatus()
         {
             string username = lawyer.GetResponse("What is the username of the Legend whose active status you want to check?");
-            Legend legend = reader.CheckStatus(username);
-            if(lawyer.GetYesNo("Would you like to change the actvie status of this Legend?"))
+            Legend legend = reader.GetLegend(username);
+            if(lawyer.GetYesNo("Would you like to change the active status of this Legend?"))
             {
                 if (legend.Activity)
                 {
                     legend.SetActivity("false");
-                    updater.UpdateReservedMons(legend.ReservedPokemon);
+                    updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
                     updater.UpdateLegendReserveMon(legend.Id, 0);
                     updater.UpdateLegendStatus(legend.Id, legend.Activity);
                     
@@ -108,8 +108,25 @@ namespace Legend_Management
                     }
                     updater.UpdateLegendReserveMon(legend.Id, reserve.Pokemon);
                     updater.UpdateLegendStatus(legend.Id, legend.Activity);
-                    
+                                      
                 }
+            }
+        }
+        public void ChangeMon()
+        {
+            string username = lawyer.GetResponse("What is the username of the Legend whose reserved mon is changing?");
+            if (reader.DoesLegendExists(username))
+            {
+                Legend legend = reader.GetLegend(username);
+                int dexnum = lawyer.GetInt("What is the Dex Number of the final/split pokemon" + legend.UserName + " would like?");
+                string pokemon = reader.GetPokemonName(dexnum);
+                updater.UpdateReservedMonstoAvail(legend.ReservedPokemon);
+                updater.UpdateReservedMons(legend.NickName, dexnum);
+                updater.UpdateLegendReserveMon(legend.Id, dexnum);
+            }
+            else
+            {
+                Console.WriteLine("you may want to check your spelling.");
             }
         }
 

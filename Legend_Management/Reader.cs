@@ -144,7 +144,7 @@ namespace Legend_Management
             }
         }
 
-        public Legend CheckStatus(string username)
+        public Legend GetLegend(string username)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
             Legend legend = new Legend();
