@@ -184,9 +184,14 @@ namespace Legend_Management
         }
         public void UpdateIconStatus(Legend legend)
         {
-            if(lawyer.GetYesNo("The current icon status of " + legend.UserName + " is: " + legend.Icon + " . Would you like to change that?"))
+            bool fact = lawyer.GetYesNo("The current icon status of " + legend.UserName + " is: " + legend.Icon + " . Would you like to change that?");
+            if (fact)
             {
-                bool fact = !(legend.Icon);
+                fact = !(legend.Icon);
+                updater.UpdateIconStatus(legend.UserName, fact);
+            }
+            else
+            {
                 updater.UpdateIconStatus(legend.UserName, fact);
             }
         }

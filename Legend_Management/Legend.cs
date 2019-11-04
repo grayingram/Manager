@@ -114,6 +114,7 @@ namespace Legend_Management
                 ReservedPokemon = 0
 ;
             }
+            Icon = false;
             
         }
         /// <summary>
@@ -136,6 +137,8 @@ namespace Legend_Management
             {
                 Activity = false;
             }
+            Icon = false;
+            
         }
 
         public Legend()
