@@ -182,6 +182,14 @@ namespace Legend_Management
                 Console.WriteLine("you may want to check your spelling.");
             }
         }
+        public void UpdateIconStatus(Legend legend)
+        {
+            if(lawyer.GetYesNo("The current icon status of " + legend.UserName + " is: " + legend.Icon + " . Would you like to change that?"))
+            {
+                bool fact = !(legend.Icon);
+                updater.UpdateIconStatus(legend.UserName, fact);
+            }
+        }
 
         public void AddPokemon()
         {

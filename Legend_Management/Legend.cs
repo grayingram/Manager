@@ -40,8 +40,7 @@ namespace Legend_Management
             }
             else
             {
-                ReservedPokemon = 0
-;
+                ReservedPokemon = 0;
             }
             if (iconstatus.Equals("true"))
             {
@@ -52,6 +51,38 @@ namespace Legend_Management
                 Icon = false;
             }
             
+        }
+        /// <summary>
+        /// any legend
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userName"></param>
+        /// <param name="nickName"></param>
+        /// <param name="activity"></param>
+        /// <param name="iconstatus"></param>
+        public Legend(int id, string userName, string nickName, string activity, string iconstatus)
+        {
+            Id = id;
+            UserName = userName;
+            NickName = nickName;
+            if (activity.Equals("true"))
+            {
+                Activity = true;
+            }
+            else
+            {
+                Activity = false;
+            }
+            
+            if (iconstatus.Equals("true"))
+            {
+                Icon = true;
+            }
+            else
+            {
+                Icon = false;
+            }
+
         }
         /// <summary>
         /// a legend without the icon status

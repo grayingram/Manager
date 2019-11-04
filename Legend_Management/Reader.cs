@@ -44,12 +44,32 @@ namespace Legend_Management
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM legends;";
+                cmd.CommandText = "SELECT idLegends, UserName, NickName, Activity FROM legends;";
 
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["UserName"].ToString(), dr["NickName"].ToString(), dr["Activity"].ToString());
+                    legends.Add(legend);
+                }
+                return legends;
+            }
+        }
+        public List<Legend> ReadLegendsI()
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            List<Legend> legends = new List<Legend>();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT idLegends, UserName, NickName, Activity, Icon FROM legends;";
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["UserName"].ToString(), dr["NickName"].ToString(), dr["Activity"].ToString(), dr["Icon"].ToString());
                     legends.Add(legend);
                 }
                 return legends;
