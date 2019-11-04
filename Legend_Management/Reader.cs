@@ -153,7 +153,7 @@ namespace Legend_Management
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM legends where UserName = @username;";
+                cmd.CommandText = "SELECT idLegends, UserName, NickName, Activity, ReservedMonDex FROM legends where UserName = @username;";
                 cmd.Parameters.AddWithValue("username", username);
 
                 MySqlDataReader dr = cmd.ExecuteReader();

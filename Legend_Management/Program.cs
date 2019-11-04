@@ -95,7 +95,7 @@ namespace Legend_Management
         {
             Lawyer lawyer = new Lawyer();
             Moderator meg = new Moderator();
-            int num = lawyer.GetInt("How many legends are we adding today?");
+            int num = lawyer.GetInt("How many legends are changing mons today?");
             for(int i =0; i < num; i++)
             {
                 meg.AddLegend();

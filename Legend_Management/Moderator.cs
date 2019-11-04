@@ -63,6 +63,11 @@ namespace Legend_Management
                 }
             }
         }
+        public void AddIcon()
+        {
+            string username = lawyer.GetResponse("What is the name of legend who is becoming an icon?");
+            Legend legend = reader.GetLegend(username);
+        }
 
         public void AddLegend()
         {
