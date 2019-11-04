@@ -13,7 +13,7 @@ namespace Legend_Management
         {
 
         }
-//reads the pokemon that exist
+        //reads the pokemon that exist
         public List<Pokemon> ReadPokemon()
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
@@ -28,13 +28,13 @@ namespace Legend_Management
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Pokemon pokemon = new Pokemon(int.Parse(dr["DexNum"].ToString()),dr["PokemonName"].ToString(), int.Parse(dr["Generation"].ToString()));
+                    Pokemon pokemon = new Pokemon(int.Parse(dr["DexNum"].ToString()), dr["PokemonName"].ToString(), int.Parse(dr["Generation"].ToString()));
                     pokemons.Add(pokemon);
                 }
                 return pokemons;
             }
         }
-//reads the legends that exist
+        //reads the legends that exist
         public List<Legend> ReadLegends()
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
@@ -78,7 +78,7 @@ namespace Legend_Management
                         Available available = new Available(pokemon_name, nickname);
                         availables.Add(available);
                     }
-                    
+
                 }
                 return availables;
             }
@@ -118,7 +118,7 @@ namespace Legend_Management
                 {
                     return true;
                 }
-                
+
                 else
                 {
                     return false;
@@ -160,7 +160,7 @@ namespace Legend_Management
                 while (dr.Read())
                 {
                     legend.SetId(int.Parse(dr["idLegends"].ToString()));
-                    legend.SetUserName( dr["UserName"].ToString());
+                    legend.SetUserName(dr["UserName"].ToString());
                     legend.SetNickName(dr["NickName"].ToString());
                     legend.SetActivity(dr["Activity"].ToString());
                     legend.SetReservedMon(int.Parse(dr["ReservedMonDex"].ToString()));
@@ -168,5 +168,65 @@ namespace Legend_Management
             }
             return legend;
         }
+        public Legend GetLegendwithoutmon(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            Legend legend = new Legend();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT idLegends, UserName, NickName, Activity, ReservedMonDex FROM legends where UserName = @username;";
+                cmd.Parameters.AddWithValue("username", username);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    legend.SetId(int.Parse(dr["idLegends"].ToString()));
+                    legend.SetUserName(dr["UserName"].ToString());
+                    legend.SetNickName(dr["NickName"].ToString());
+                    legend.SetActivity(dr["Activity"].ToString());
+                    if ((dr["ReservedMonDex"].ToString()).Length < 0)
+                    {
+                        legend.SetReservedMon(0);
+                    }
+                    else
+                    {
+                        legend.SetReservedMon(int.Parse(dr["ReservedMonDex"].ToString()));
+                    }
+                }
+            }
+            return legend;
+        }
+
+        public Legend GetIcon(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            Legend legend = new Legend();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM legends where UserName = @username;";
+
+                cmd.Parameters.AddWithValue("username", username);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    legend.SetId(int.Parse(dr["idLegends"].ToString()));
+                    legend.SetUserName(dr["UserName"].ToString());
+                    legend.SetNickName(dr["NickName"].ToString());
+                    legend.SetActivity(dr["Activity"].ToString());
+                    legend.SetReservedMon(int.Parse(dr["ReservedMonDex"].ToString()));
+                    legend.SetIcon(dr["Icon"].ToString());
+                }
+            }
+            return legend;
+
+        }
+
     }
 }

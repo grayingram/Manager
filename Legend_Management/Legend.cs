@@ -114,6 +114,7 @@ namespace Legend_Management
             NickName = "";
             Activity = false;
             ReservedPokemon = 0;
+            Icon = false;
         }
 
         public void SetId(int id)
@@ -142,6 +143,17 @@ namespace Legend_Management
         public void SetReservedMon(int dexNum)
         {
             ReservedPokemon = dexNum;
+        }
+        public void SetIcon(string icon)
+        {
+            if (icon.Equals("true"))
+            {
+                Icon = true;
+            }
+            else
+            {
+                Icon = false;
+            }
         }
     }
 }

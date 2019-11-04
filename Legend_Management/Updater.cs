@@ -106,6 +106,21 @@ namespace Legend_Management
 
         }
 
+        public void UpdateIconStatus(string username, bool fact)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "update legends Set Icon = @fact Where UserName = @username;";
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("fact", fact);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public void UpdateNickname(string nickName, string userName)
         {
             MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
