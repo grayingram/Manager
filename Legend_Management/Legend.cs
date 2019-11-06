@@ -74,7 +74,7 @@ namespace Legend_Management
                 Activity = false;
             }
             
-            if (iconstatus.Equals("true"))
+            if (iconstatus.Equals("1"))
             {
                 Icon = true;
             }

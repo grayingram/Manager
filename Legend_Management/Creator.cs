@@ -41,11 +41,13 @@ namespace Legend_Management
 
                 conn.Open();
                 bool activity = true;
+                int icon = 0;
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity) Values(@username, @nickname, @activity);";
+                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity, Icon) Values(@username, @nickname, @activity, @icon);";
                 cmd.Parameters.AddWithValue("username", username);
                 cmd.Parameters.AddWithValue("nickname", nickname);
                 cmd.Parameters.AddWithValue("activity", activity.ToString());
+                cmd.Parameters.AddWithValue("icon", icon);
                 cmd.ExecuteNonQuery();
 
             }

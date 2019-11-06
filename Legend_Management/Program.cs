@@ -96,18 +96,15 @@ namespace Legend_Management
             Lawyer lawyer = new Lawyer();
             Moderator meg = new Moderator();
             Reader reader = new Reader();
-            List<Legend> legends = reader.ReadLegends();
-            foreach(Legend legend in legends)
+            //List<Legend> legends = reader.ReadLegends();
+
+            int num = lawyer.GetInt("How many legends are changing mons today?");
+            for (int i = 0; i < num; i++)
             {
-                meg.UpdateIconStatus(legend);
+                meg.AddLegend();
             }
-            //int num = lawyer.GetInt("How many legends are changing mons today?");
-            //for(int i =0; i < num; i++)
-            //{
-                
-            //}
-            //Console.WriteLine("done");
-            
+            Console.WriteLine("done");
+
             Console.ReadLine();
             //SheetsService sheetsService = new SheetsService(new BaseClientService.Initializer
             //{
