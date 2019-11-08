@@ -145,6 +145,54 @@ namespace Legend_Management
                 }
             }
         }
+        public bool IsIcon(Legend legend)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            using (conn)
+            {
+                conn.Open();
+                int fact = 7;
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Icon FROM legends where UserName = @username;";
+
+                cmd.Parameters.AddWithValue("username", legend.UserName);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    fact = (int.Parse(dr["Icon"].ToString()));                                   
+                }
+                if(fact == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        public bool IsIcon(string username)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            using (conn)
+            {
+                conn.Open();
+                int fact = 7;
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT Icon FROM legends where UserName = @username;";
+
+                cmd.Parameters.AddWithValue("username", username);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    fact = (int.Parse(dr["Icon"].ToString()));
+                }
+                if (fact == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         public string GetLegendUserNamebyRM(int dexNum)
         {

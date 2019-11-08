@@ -21,12 +21,14 @@ namespace Legend_Management
 
                 conn.Open();
                 bool activity = true;
+                int num = 0;
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity, ReservedMonDex)  VALUES(@userName,@nickname, @activity, @reservedmon);";
+                cmd.CommandText = "INSERT INTO legends (UserName, Nickname, Activity, ReservedMonDex, Icon)  VALUES(@userName,@nickname, @activity, @reservedmon, @icon);";
                 cmd.Parameters.AddWithValue("userName", userName);
                 cmd.Parameters.AddWithValue("nickname", nickname);
                 cmd.Parameters.AddWithValue("activity", activity.ToString());
                 cmd.Parameters.AddWithValue("reservedmon", reservedmon);
+                cmd.Parameters.AddWithValue("icon", num);
                 cmd.ExecuteNonQuery();
             }
             updater.UpdateReservedMons(nickname, reservedmon);

@@ -69,6 +69,19 @@ namespace Legend_Management
             Legend legend = reader.GetLegend(username);
         }
 
+        public void CheckLegend(string username)
+        {
+            if (reader.DoesLegendExists(username))
+            {
+                Legend legend = reader.GetLegend(username);
+                bool fact = reader.IsIcon(legend);
+            }
+            else
+            {
+                Console.WriteLine("Sorry aparentenly that legend doesn't exist! Try again.");
+            }
+            
+        }
         public void AddLegend()
         {
             string username = lawyer.GetResponse("What is the Legends username?");

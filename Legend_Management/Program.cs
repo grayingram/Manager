@@ -98,10 +98,11 @@ namespace Legend_Management
             Reader reader = new Reader();
             //List<Legend> legends = reader.ReadLegends();
 
-            int num = lawyer.GetInt("How many legends are changing mons today?");
+            int num = lawyer.GetInt("How many legends are Joining? ");
             for (int i = 0; i < num; i++)
             {
                 meg.AddLegend();
+
             }
             Console.WriteLine("done");
 
