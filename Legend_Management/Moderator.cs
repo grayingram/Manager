@@ -40,6 +40,20 @@ namespace Legend_Management
                 updater.UpdateLegends(legend.NickName, legend.Id);
             }
         }
+        public void SetReservableMon()
+        {
+            string username = lawyer.GetResponse("What is the Legends username?");
+            Reserve reserve = CheckAvailable();
+            if (reserve.Fact)
+            {
+                updater.SetReserveMon(username, reserve.Pokemon);
+            }
+            else
+            {
+                Console.WriteLine("sorry try again");
+            }
+            
+        }
 
         public void UpdateNickname()
         {

@@ -101,7 +101,7 @@ namespace Legend_Management
             int num = lawyer.GetInt("How many legends are Joining? ");
             for (int i = 0; i < num; i++)
             {
-                meg.AddLegend();
+                meg.SetReservableMon();
 
             }
             Console.WriteLine("done");

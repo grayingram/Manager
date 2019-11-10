@@ -10,7 +10,21 @@ namespace Legend_Management
         Repository Repository = new Repository();
         public Reader Reader = new Reader();
 
+        public void SetReserveMon(string nickname, int dexnum)
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
 
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "Update legends set ReservedMonDex = @dexnum where Username = @username;";
+                cmd.Parameters.AddWithValue("username", nickname);
+                cmd.Parameters.AddWithValue("dexnum", dexnum);
+                cmd.ExecuteNonQuery();
+            }
+
+        }
 
         public void UpdateReservedMons(string nickname, int dexNum)
         {
