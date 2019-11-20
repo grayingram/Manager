@@ -267,6 +267,29 @@ namespace Legend_Management
             }
             return legend;
         }
+        public List<Legend> RetrieveLegends()
+        {
+            MySqlConnection conn = new MySqlConnection(Repository.ConnStr);
+            List<Legend> legends = new List<Legend>();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT idLegends, UserName, NickName, Icon FROM legends;";
+                
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Legend legend = new Legend(int.Parse(dr["idLegends"].ToString()), dr["UserName"].ToString(), dr["NickName"].ToString(), dr["Icon"].ToString());
+                    legends.Add(legend);
+                }
+
+            }
+            return legends;
+
+        }
 
         public Legend GetIcon(string username)
         {

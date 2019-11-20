@@ -98,12 +98,14 @@ namespace Legend_Management
             Reader reader = new Reader();
             //List<Legend> legends = reader.ReadLegends();
 
-            int num = lawyer.GetInt("How many legends are Joining? ");
-            for (int i = 0; i < num; i++)
-            {
-                meg.SetReservableMon();
+            int num = lawyer.GetInt("How many Pokemon do you need to add? ");
+            meg.AddPokemon(num);
+            //for (int i = 0; i < num; i++)
+            //{
 
-            }
+
+
+            //}
             Console.WriteLine("done");
 
             Console.ReadLine();

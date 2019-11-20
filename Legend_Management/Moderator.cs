@@ -156,7 +156,7 @@ namespace Legend_Management
         {
             string username = lawyer.GetResponse("What is the username of the Legend whose active status you want to check?");
             Legend legend = reader.GetLegend(username);
-            if(lawyer.GetYesNo("Would you like to change the active status of this Legend?"))
+            if(lawyer.GetYesNo("Would you like to change the active status of " + legend.UserName + "?"))
             {
                 if (legend.Activity)
                 {
@@ -179,6 +179,10 @@ namespace Legend_Management
                                       
                 }
             }
+        }
+        private void UpdateStatus(string username)
+        {
+
         }
         public void ChangeMon()
         {
@@ -221,6 +225,11 @@ namespace Legend_Management
             {
                 updater.UpdateIconStatus(legend.UserName, fact);
             }
+        }
+
+        public void Reset()
+        {
+            List<Legend> legends = reader.RetrieveLegends();
         }
 
         public void AddPokemon()

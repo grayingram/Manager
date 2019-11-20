@@ -140,6 +140,21 @@ namespace Legend_Management
             Icon = false;
             
         }
+        public Legend(int id, string userName, string nickName, int icon)
+        {
+            Id = id;
+            UserName = userName;
+            NickName = nickName;
+            if(icon == 0)
+            {
+                Icon = false;
+            }
+            else
+            {
+                Icon = true;
+            }
+        }
+        
 
         public Legend()
         {
